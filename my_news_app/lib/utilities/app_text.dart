@@ -17,6 +17,7 @@ class AppText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(title,
+      maxLines: 3,
       style: GoogleFonts.poppins(
         fontSize: fontSize,
         fontWeight: textFontWeight,
