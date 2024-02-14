@@ -76,7 +76,7 @@ class Articles {
 }
 
 class Source {
-  String? id;
+  String? id = 'not given';
   String? name;
 
   Source({this.id, this.name});
@@ -88,8 +88,8 @@ class Source {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
+    data['id'] = id;
+    data['name'] = name;
     return data;
   }
 }

@@ -56,23 +56,50 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             ),
           ),
           Container(
-              margin: EdgeInsets.only(top: heightX * 0.4),
+            margin: EdgeInsets.only(top: heightX * 0.4),
+            decoration: const BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+            ),
+            // child: BackdropFilter(
+            //   filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
+            child: Container(
+              padding: const EdgeInsets.all(20),
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20)),
+                  color: Colors.white //Colors.blue.withOpacity(0.3),
+                  ),
+              child: ListView(
+                children: [
+                  AppSimpleText(
+                    title: widget.newsTitle,
+                    textFontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                  SizedBox(height: heightX * .01,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AppSimpleText(title: widget.source, textColor: Colors.blue, textFontWeight: FontWeight.w700,),
+                      AppSimpleText(title: widget.newsDate)
+                    ],
+                  ),
+                  SizedBox(height: heightX * .02,),
+                  AppSimpleText(title:  'Author: ${widget.author}' ),
+                  SizedBox(height: heightX * .01,),
+                  AppSimpleText(title: widget.description),
+                  SizedBox(height: heightX * .03,),
+                  AppSimpleText(title: widget.content),
+                  SizedBox(height: heightX * .05,),
+                  TextButton(
+                      onPressed: (){},
+                    style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.red)),
+                      child: const AppSimpleText(title: 'Read full article',textColor: Colors.white,),
+                  )
+                ],
               ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.3),
-                  ),
-                  child: ListView(
-                    children: [AppText(title: widget.newsTitle)],
-                  ),
-                ),
-              ))
+            ),
+          )
         ],
       ),
     );

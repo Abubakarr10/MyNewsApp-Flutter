@@ -26,11 +26,21 @@ class AppText extends StatelessWidget {
   }
 }
 
-class AppLargeText extends AppText{
-  const AppLargeText({super.key, required super.title});
+class AppSimpleText extends AppText{
+  const AppSimpleText({super.key,
+    required super.title,
+    super.fontSize,
+    super.textColor,
+    super.textFontWeight
+  });
 
   @override
   Widget build(BuildContext context){
-    return Text(title, );
+    return Text(title,
+      style: GoogleFonts.poppins(
+        fontSize: fontSize,
+        fontWeight: textFontWeight,
+        color: textColor,
+      ),);
   }
 }

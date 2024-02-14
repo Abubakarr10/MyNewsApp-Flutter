@@ -206,83 +206,84 @@ class _HomeScreenState extends State<HomeScreen> {
               )),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: FutureBuilder<CategoriesNewsModel>(
-              future: newsViewModel.fetchNewsCategoriesApi('General'),
-              builder: (BuildContext context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: SpinKitFadingFour(
-                      color: Colors.red,
-                      size: 50,
-                    ),
-                  );
-                } else {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.articles!.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                      var api = snapshot.data!.articles![index];
-                      DateTime dateTime = DateTime.parse(api.publishedAt.toString());
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: CachedNetworkImage(
-                                imageUrl: api.urlToImage.toString(),
-                                fit: BoxFit.cover,
-                                height: heightX * 0.20,
-                                width: widthX * 0.3,
-                                placeholder: (context, url) =>
-                                const SpinKitDualRing(
-                                  color: Colors.redAccent,
-                                  size: 40,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                const Icon(
-                                  Icons.error_outline,
-                                  color: Colors.red,
-                                  size: 40,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                                child: Container(
-                                  height: heightX * 0.20,
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Column(
-                                    children: [
-                                      AppText(title: api.title.toString(),
-                                        textFontWeight: FontWeight.w700, fontSize: 15,
-                                      ),
-                                      const Spacer(),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          AppText(title: api.source!.name.toString(),
-                                            textFontWeight: FontWeight.w500, textColor: Colors.blue,
-                                            fontSize: 12,
-                                          ),
-                                          AppText(title: format.format(dateTime), fontSize: 12,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ))
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                }
-              },
-            ),
-          )
+          // Padding(
+          //   padding: const EdgeInsets.all(20),
+          //   child: FutureBuilder<CategoriesNewsModel>(
+          //     future: newsViewModel.fetchNewsCategoriesApi('General'),
+          //     builder: (BuildContext context, snapshot) {
+          //       if (snapshot.connectionState == ConnectionState.waiting) {
+          //         return const Center(
+          //           child: SpinKitFadingFour(
+          //             color: Colors.red,
+          //             size: 50,
+          //           ),
+          //         );
+          //       } else {
+          //         return ListView.builder(
+          //           itemCount: snapshot.data!.articles!.length,
+          //           shrinkWrap: true,
+          //           scrollDirection: Axis.vertical,
+          //           itemBuilder: (BuildContext context, int index) {
+          //             var api = snapshot.data!.articles![index];
+          //             DateTime dateTime = DateTime.parse(api.publishedAt.toString());
+          //            // CachedNetworkImageProvider cachedImage = CachedNetworkImageProvider(api.urlToImage.toString());
+          //             return Padding(
+          //               padding: const EdgeInsets.only(bottom: 15),
+          //               child: Row(
+          //                 children: [
+          //                   ClipRRect(
+          //                     borderRadius: BorderRadius.circular(15),
+          //                     child: CachedNetworkImage(
+          //                       imageUrl:  api.urlToImage.toString(),
+          //                       fit: BoxFit.cover,
+          //                       height: heightX * 0.20,
+          //                       width: widthX * 0.3,
+          //                       placeholder: (context, url) =>
+          //                       const SpinKitDualRing(
+          //                         color: Colors.redAccent,
+          //                         size: 40,
+          //                       ),
+          //                       errorWidget: (context, url, error) =>
+          //                       const Icon(
+          //                         Icons.error_outline,
+          //                         color: Colors.red,
+          //                         size: 40,
+          //                       ),
+          //                     ),
+          //                   ),
+          //                   Expanded(
+          //                       child: Container(
+          //                         height: heightX * 0.20,
+          //                         padding: const EdgeInsets.only(left: 15),
+          //                         child: Column(
+          //                           children: [
+          //                             AppText(title: api.title.toString(),
+          //                               textFontWeight: FontWeight.w700, fontSize: 15,
+          //                             ),
+          //                             const Spacer(),
+          //                             Row(
+          //                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //                               children: [
+          //                                 AppText(title: api.source!.name.toString(),
+          //                                   textFontWeight: FontWeight.w500, textColor: Colors.blue,
+          //                                   fontSize: 12,
+          //                                 ),
+          //                                 AppText(title: format.format(dateTime), fontSize: 12,
+          //                                 ),
+          //                               ],
+          //                             ),
+          //                           ],
+          //                         ),
+          //                       ))
+          //                 ],
+          //               ),
+          //             );
+          //           },
+          //         );
+          //       }
+          //     },
+          //   ),
+          // )
         ],
       ),
     );
