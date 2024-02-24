@@ -8,7 +8,9 @@ import 'package:my_news_app/controller/select_category_controller.dart';
 import 'package:my_news_app/model/news_categories_model.dart';
 import 'package:my_news_app/utilities/app_text.dart';
 
+import '../respository/news_repository.dart';
 import '../view_model/news_view_model.dart';
+import 'news_detail_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -79,7 +81,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             ),
             const SizedBox(height: 15,),
             Obx(() => Expanded(
-              child: FutureBuilder<CategoriesNewsModel>(
+              child: FutureBuilder(
                 future: newsViewModel.fetchNewsCategoriesApi(categoryController.categoryName.value),
                 builder: (BuildContext context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -90,61 +92,84 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       ),
                     );
                   } else {
+                    List<Article> articles = snapshot.data as List<Article>;
                     return ListView.builder(
-                      itemCount: snapshot.data!.articles!.length,
+                      itemCount: articles.length,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (BuildContext context, int index) {
-                        var api = snapshot.data!.articles![index];
-                        DateTime dateTime = DateTime.parse(api.publishedAt.toString());
+                        Article article = articles[index];
+                        DateTime dateTime = DateTime.parse(article.publishedAt.toString());
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 15),
-                          child: Row(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: CachedNetworkImage(
-                                  imageUrl: api.urlToImage.toString(),
-                                  fit: BoxFit.cover,
-                                  height: heightX * 0.20,
-                                  width: widthX * 0.3,
-                                  placeholder: (context, url) =>
-                                  const SpinKitDualRing(
-                                    color: Colors.redAccent,
-                                    size: 40,
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                  const Icon(
-                                    Icons.error_outline,
-                                    color: Colors.red,
-                                    size: 40,
+                          child: InkWell(
+                            onTap:(){
+                              String newsImage = article.urlToImage.toString();
+                              String newsTitle = article.title.toString();
+                              String newsDate = format.format(dateTime);
+                              String newsAuthor = article.author.toString();
+                              String newsDescription = article.description.toString();
+                              String newsContent = article.content.toString();
+                              String newsSource = article.author.toString();
+                              Get.to(NewsDetailScreen(
+                                  newsImage: newsImage,
+                                  newsTitle: newsTitle,
+                                  newsDate: newsDate,
+                                  author: newsAuthor,
+                                  description: newsDescription,
+                                  content: newsContent,
+                                  source: newsSource
+                              ));
+                            },
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: CachedNetworkImage(
+                                    imageUrl: article.urlToImage.toString(),
+                                    fit: BoxFit.cover,
+                                    height: heightX * 0.20,
+                                    width: widthX * 0.3,
+                                    placeholder: (context, url) =>
+                                    const SpinKitDualRing(
+                                      color: Colors.redAccent,
+                                      size: 40,
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                    const Icon(
+                                      Icons.error_outline,
+                                      color: Colors.red,
+                                      size: 40,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                  child: Container(
-                                    height: heightX * 0.20,
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Column(
-                                      children: [
-                                        AppText(title: api.title.toString(),
-                                        textFontWeight: FontWeight.w700, fontSize: 15,
-                                        ),
-                                        const Spacer(),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            AppText(title: api.source!.name.toString(),
-                                              textFontWeight: FontWeight.w500, textColor: Colors.blue,
-                                              fontSize: 12,
-                                            ),
-                                            AppText(title: format.format(dateTime), fontSize: 12,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ))
-                            ],
+                                Expanded(
+                                    child: Container(
+                                      height: heightX * 0.20,
+                                      padding: const EdgeInsets.only(left: 15),
+                                      child: Column(
+                                        children: [
+                                          AppText(title: article.title.toString(),
+                                          textFontWeight: FontWeight.w700, fontSize: 15,
+                                          ),
+                                          const Spacer(),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const AppText(title: 'source',
+                                                textFontWeight: FontWeight.w500, textColor: Colors.blue,
+                                                fontSize: 12,
+                                              ),
+                                              //=== date ===
+                                              AppText(title: format.format(dateTime),
+                                                fontSize: 12,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ))
+                              ],
+                            ),
                           ),
                         );
                       },

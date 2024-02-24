@@ -11,8 +11,9 @@ class NewsViewModel{
     return response;
   }
 
-  Future<CategoriesNewsModel> fetchNewsCategoriesApi(String category)async{
-    final response = await api.fetchNewsCategoriesApi(category);
+  Future<List<Article>> fetchNewsCategoriesApi(String category)async{
+  //  final response = await api.fetchNewsCategoriesApi(category);
+    final response = await api.fetchNews(category);
     return response;
   }
 

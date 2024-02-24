@@ -8,14 +8,14 @@ import 'package:get/get.dart';
 import 'package:my_news_app/utilities/app_text.dart';
 
 class NewsDetailScreen extends StatefulWidget {
-  final String newsImage,
+  String? newsImage,
       newsTitle,
       newsDate,
       author,
       description,
       content,
       source;
-  const NewsDetailScreen(
+   NewsDetailScreen(
       {super.key,
       required this.newsImage,
       required this.newsTitle,
@@ -45,34 +45,38 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             height: heightX * 0.45,
             width: widthX,
             child: CachedNetworkImage(
-              imageUrl: widget.newsImage,
+              imageUrl:  widget.newsImage.toString(),
               fit: BoxFit.cover,
-              placeholder: (context, uri) => const Center(
-                child: SpinKitDancingSquare(
-                  color: Colors.red,
-                  size: 50,
-                ),
+              height: heightX * 0.20,
+              width: widthX * 0.3,
+              placeholder: (context, url) =>
+              const SpinKitDualRing(
+                color: Colors.redAccent,
+                size: 40,
+              ),
+              errorWidget: (context, url, error) =>
+              const Icon(
+                Icons.error_outline,
+                color: Colors.red,
+                size: 60,
               ),
             ),
           ),
           Container(
             margin: EdgeInsets.only(top: heightX * 0.4),
-            decoration: const BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-            ),
-            // child: BackdropFilter(
-            //   filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
             child: Container(
               padding: const EdgeInsets.all(20),
               decoration: const BoxDecoration(
-                  color: Colors.white //Colors.blue.withOpacity(0.3),
+                  color: Colors.white, //Colors.blue.withOpacity(0.3),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40)
+                )
                   ),
               child: ListView(
                 children: [
                   AppSimpleText(
-                    title: widget.newsTitle,
+                    title: widget.newsTitle.toString(),
                     textFontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
@@ -80,16 +84,16 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AppSimpleText(title: widget.source, textColor: Colors.blue, textFontWeight: FontWeight.w700,),
-                      AppSimpleText(title: widget.newsDate)
+                      AppSimpleText(title: widget.source.toString(), textColor: Colors.blue, textFontWeight: FontWeight.w700,),
+                      AppSimpleText(title: widget.newsDate.toString())
                     ],
                   ),
                   SizedBox(height: heightX * .02,),
                   AppSimpleText(title:  'Author: ${widget.author}' ),
                   SizedBox(height: heightX * .01,),
-                  AppSimpleText(title: widget.description),
+                  AppSimpleText(title: widget.description.toString()),
                   SizedBox(height: heightX * .03,),
-                  AppSimpleText(title: widget.content),
+                  AppSimpleText(title: widget.content.toString()),
                   SizedBox(height: heightX * .05,),
                   TextButton(
                       onPressed: (){},
