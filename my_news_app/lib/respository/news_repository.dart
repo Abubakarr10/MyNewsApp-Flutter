@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:my_news_app/model/news_categories_model.dart';
 import 'package:my_news_app/model/news_channel_headlines_model.dart';
 
+import '../model/article_model.dart';
+
 class NewsRepository{
 
   final apiKey = '66a93a292ef2452ab0a7a4691c505a11';
@@ -76,34 +78,3 @@ class NewsRepository{
   }
 }
 
-class Article {
-  final String title;
-  final String description;
-  final String url;
-  final String urlToImage;
-  final String? author;
-  final String? publishedAt;
-  final String? content;
-
-  Article({
-    required this.title,
-    required this.description,
-    required this.url,
-    required this.urlToImage,
-    required this.content,
-    required this.author,
-    required this.publishedAt
-  });
-
-  factory Article.fromJson(Map<String, dynamic> json) {
-    return Article(
-      title: json['title'],
-      description: json['description'],
-      url: json['url'],
-      urlToImage: json['urlToImage'],
-        author: json['author'],
-        publishedAt: json['publishedAt'],
-        content: json['content']
-    );
-  }
-}

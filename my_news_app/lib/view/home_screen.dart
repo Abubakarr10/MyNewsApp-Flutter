@@ -12,6 +12,7 @@ import 'package:my_news_app/view/categories_screen.dart';
 import 'package:my_news_app/view/news_detail_screen.dart';
 import 'package:my_news_app/view_model/news_view_model.dart';
 
+import '../model/article_model.dart';
 import '../model/news_categories_model.dart';
 import '../respository/news_repository.dart';
 

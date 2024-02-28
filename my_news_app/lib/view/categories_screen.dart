@@ -8,6 +8,7 @@ import 'package:my_news_app/controller/select_category_controller.dart';
 import 'package:my_news_app/model/news_categories_model.dart';
 import 'package:my_news_app/utilities/app_text.dart';
 
+import '../model/article_model.dart';
 import '../respository/news_repository.dart';
 import '../view_model/news_view_model.dart';
 import 'news_detail_screen.dart';
