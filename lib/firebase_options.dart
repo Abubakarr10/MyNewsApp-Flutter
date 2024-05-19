@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAOYUemEUyDqE0OHDGCII9gOz7V13JV0fw',
-    appId: '1:319487889734:web:09e4daa66d49fb454a9547',
-    messagingSenderId: '319487889734',
-    projectId: 'mynewsapp-mad',
-    authDomain: 'mynewsapp-mad.firebaseapp.com',
-    storageBucket: 'mynewsapp-mad.appspot.com',
-    measurementId: 'G-15DZK0CEFG',
+    apiKey: 'AIzaSyBNIjPI--a55WXEVFIptid6hBcKUVogp64',
+    appId: '1:202781714905:web:9fae2ee26cb6dd95f011c8',
+    messagingSenderId: '202781714905',
+    projectId: 'my-news-app-f39cb',
+    authDomain: 'my-news-app-f39cb.firebaseapp.com',
+    storageBucket: 'my-news-app-f39cb.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDDkgLrlrSpnB-vp6-9Ya2rGz8XsD7RpQI',
-    appId: '1:319487889734:android:a1c3506daae6ab1f4a9547',
-    messagingSenderId: '319487889734',
-    projectId: 'mynewsapp-mad',
-    storageBucket: 'mynewsapp-mad.appspot.com',
+    apiKey: 'AIzaSyBZtXac4uIdSiz1vZCGvDRkW0ONQWur1vY',
+    appId: '1:202781714905:android:89bf14ee2549c123f011c8',
+    messagingSenderId: '202781714905',
+    projectId: 'my-news-app-f39cb',
+    storageBucket: 'my-news-app-f39cb.appspot.com',
   );
+
 }
