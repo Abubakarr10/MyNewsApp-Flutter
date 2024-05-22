@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-
 import '../view/home_screen.dart';
 
 class FilterNewsController extends GetxController{

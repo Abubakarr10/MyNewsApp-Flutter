@@ -39,7 +39,13 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
       print(widget.newsImage);
     }
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: InkWell(
+            onTap: (){
+              Get.back();
+            },
+            child: const Icon(Icons.arrow_back_ios)),
+      ),
       body: Stack(
         children: [
           SizedBox(

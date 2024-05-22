@@ -1,15 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:my_news_app/controller/select_category_controller.dart';
-import 'package:my_news_app/model/news_categories_model.dart';
 import 'package:my_news_app/utilities/app_text.dart';
-
+import '../controller/select_screen_controller.dart';
 import '../model/article_model.dart';
-import '../respository/news_repository.dart';
+import '../utilities/navigation_conts.dart';
 import '../view_model/news_view_model.dart';
 import 'news_detail_screen.dart';
 
@@ -25,6 +25,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   NewsViewModel newsViewModel = NewsViewModel();
 
   SelectCategoryController categoryController = Get.put(SelectCategoryController());
+  SelectScreenController screenController = Get.put(SelectScreenController());
+
+
 
   final format = DateFormat('MMMM dd, yyyy');
  
@@ -47,6 +50,34 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           'Categories',
           style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w700),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Obx(()=> FloatingActionButton.extended(
+          onPressed: () {},
+          backgroundColor: Colors.red,
+          shape: const StadiumBorder(),
+          label: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: List.generate(Navi.iconList.length, (int index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: InkWell(
+                      onTap: () {
+                        screenController.selectedIndex.value = Navi.checkList[index];
+                        Get.to(Navi.screenList.elementAt(index));
+                        if (kDebugMode) {
+                          print(screenController.selectedIndex.value.toString());
+                        }
+                      },
+                      child: screenController.selectedIndex.value ==  Navi.checkList[index]? Icon(Navi.iconListFilled.elementAt(index),
+                          size: 35, color: Colors.white) :
+                      Icon(Navi.iconList.elementAt(index),
+                          size: 35, color: Colors.black45)),
+                );
+              }),
+            ),
+          ))
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
