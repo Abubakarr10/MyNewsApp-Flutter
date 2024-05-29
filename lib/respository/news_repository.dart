@@ -34,13 +34,6 @@ class NewsRepository{
           }
         });
        return CategoriesNewsModel.fromJson(checkBody);
-       //  for(var bodyObj in body){
-       //    String? urlToImage = bodyObj["urlToImage"];
-       //    String? description = bodyObj["description"];
-       //  if(urlToImage!=null && description!=null){
-       //    return CategoriesNewsModel.fromJson(body);
-       //  }
-       //  }
       }
     }throw Exception('Error');
   }

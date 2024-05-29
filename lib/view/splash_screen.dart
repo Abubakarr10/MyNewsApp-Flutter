@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: heightX * 0.4,
+              height: heightX * 0.3,
               width: widthX * 0.6,
               decoration: BoxDecoration(
                 color: Colors.black,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextFormFieldWidget extends StatelessWidget {
+class TextFormEyeWidget extends StatelessWidget {
 
   final TextEditingController ctrl;
   final TextInputType keyType;
@@ -9,6 +9,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final Color mainColor;
   final String? hintText;
   final String? iconPath;
+  final bool obscure;
   final double width;
   final double height;
   final double? borderRadius;
@@ -18,8 +19,9 @@ class TextFormFieldWidget extends StatelessWidget {
   final double marginRight;
   final double marginTop;
   final FloatingLabelBehavior? floatingLabelBehavior;
+  final VoidCallback eyeTap;
 
-  const TextFormFieldWidget({super.key,
+  const TextFormEyeWidget({super.key,
     required this.ctrl,
     required this.keyType,
     this.labelText = '',
@@ -35,11 +37,17 @@ class TextFormFieldWidget extends StatelessWidget {
     this.borderRadius = 25,
     this.floatingLabelBehavior = FloatingLabelBehavior.never,
     this.disabledBorderRadius = 0,
-    this.enabledBorderRadius = 0
+    this.enabledBorderRadius = 0, this.obscure = false,required this.eyeTap
   });
 
   @override
   Widget build(BuildContext context) {
+
+    Color textColor = Theme.of(context).colorScheme.secondary;
+    Color midTextColor = Theme.of(context).colorScheme.tertiary;
+    Color bgColor = Theme.of(context).colorScheme.surface;
+
+
     return Container(
       width: width,
       height: height,
@@ -61,7 +69,7 @@ class TextFormFieldWidget extends StatelessWidget {
         child: TextFormField(
           controller: ctrl,
           cursorColor: Colors.red,
-          cursorHeight: height/2,
+
           keyboardType: keyType,
           validator: (value) {
             if (value!.isEmpty) {
@@ -69,25 +77,39 @@ class TextFormFieldWidget extends StatelessWidget {
             }
             return null;
           },
+          obscureText: obscure,
           decoration: InputDecoration(
+              suffix:
+              InkWell(
+                onTap: (){
+                  eyeTap();
+                },
+                child: Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    child: obscure == false? const
+                    Icon(Icons.remove_red_eye_rounded,
+                      color: Colors.blue,)
+                        :
+                    const Icon(Icons.visibility_off,color: Colors.red,)),
+              ),
               filled: true,
-              fillColor: Colors.white,
-              focusColor: Colors.white,
+              fillColor: bgColor,
+              focusColor: bgColor,
               labelText: labelText,
               labelStyle: const TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.w600,
               ),
+              floatingLabelAlignment: FloatingLabelAlignment.center,
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(enabledBorderRadius!),
-                  borderSide: const BorderSide(
+                  borderSide:  const BorderSide(
                       color: Colors.white
                   )
               ),
-              floatingLabelAlignment: FloatingLabelAlignment.center,
               disabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(disabledBorderRadius!),
-                  borderSide: const BorderSide(
+                  borderSide:  const BorderSide(
                       color: Colors.white
                   )
               ),
@@ -95,13 +117,13 @@ class TextFormFieldWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(borderRadius!),
                   borderSide:  const BorderSide(
                       color: Colors.red,
-                      width: 2.5
+                      width: 3
                   )
               ),
               prefixIcon: iconPath == ''? null :
               Padding(
                 padding: const EdgeInsets.only(left: 10,right: 10),
-                child: SizedBox(width: 15, height: 15, child: Image.asset(iconPath!)),
+                child: SizedBox(width: 15, height: 15, child: Image.asset(iconPath!,color: textColor,)),
               ),
               prefixIconColor: mainColor,
               hintStyle:  TextStyle(
@@ -113,7 +135,7 @@ class TextFormFieldWidget extends StatelessWidget {
               OutlineInputBorder(
                   borderRadius: BorderRadius.circular(borderRadius!),
                   borderSide: const BorderSide(
-                      color: Colors.white
+                      color: Colors.red
                   )
               )),
         ),

@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_news_app/view/login_signup/login_screen.dart';
 import 'package:my_news_app/view/login_signup/signup_screen.dart';
+import 'package:my_news_app/view/profile/profile_screen.dart';
 import 'package:my_news_app/view/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'controller/share_preferences/share_preferences_controller.dart';
 import 'firebase_options.dart';
 
 void main() async{
 
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  bool isLoggedIn = await getLoginStatus();
+
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp(isLoggedIn: isLoggedIn,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+final bool isLoggedIn;
+  const MyApp({super.key, required this.isLoggedIn});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       title: 'My News',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const SignupScreen(),
+      home: SplashScreen(),
     );
   }
 }

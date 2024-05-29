@@ -13,13 +13,8 @@ import 'package:my_news_app/utilities/app_text.dart';
 import 'package:my_news_app/utilities/navigation_conts.dart';
 import 'package:my_news_app/view/categories_screen.dart';
 import 'package:my_news_app/view/news_detail_screen.dart';
-import 'package:my_news_app/view/profile/profile_screen.dart';
-import 'package:my_news_app/view/save_article_screen.dart';
 import 'package:my_news_app/view_model/news_view_model.dart';
-
 import '../model/article_model.dart';
-import '../model/news_categories_model.dart';
-import '../respository/news_repository.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -99,7 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Obx(()=> FloatingActionButton.extended(
+      floatingActionButton: Obx(()=>
+          FloatingActionButton.extended(
           onPressed: () {},
           backgroundColor: Colors.red,
           shape: const StadiumBorder(),
@@ -112,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: InkWell(
                       onTap: () {
                         screenController.selectedIndex.value = Navi.checkList[index];
-                        Get.to(Navi.screenList.elementAt(index));
+                        Get.to( Navi.screenList.elementAt(index));
                         if (kDebugMode) {
                           print(screenController.selectedIndex.value.toString());
                         }
@@ -230,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       author: newsAuthor,
                                       description: newsDescription,
                                       content: newsContent,
-                                      source: newsSource));
+                                      source: newsSource, newsUrl: snapshot.data!.articles![index].url.toString(),));
                                 },
                                 child: SizedBox(
                                   child: Stack(
@@ -385,7 +381,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     author: article.author.toString(),
                                     description: article.description.toString(),
                                     content: article.content.toString(),
-                                    source: article.author.toString()));
+                                    source: article.source!.name.toString(), newsUrl: article.url.toString(),));
                               },
                               child: Row(
                                 children: [
@@ -426,7 +422,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             AppText(
-                                              title: article.author.toString(),
+                                              title: article.source!.name.toString(),
                                               textFontWeight: FontWeight.w500,
                                               textColor: Colors.blue,
                                               fontSize: 12,

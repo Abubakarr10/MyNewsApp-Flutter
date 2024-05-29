@@ -45,7 +45,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     double heightX = Get.height * 1;
     double widthX = Get.width * 1;
     return  Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: InkWell(
+            onTap: (){Get.back();},
+            child: const Icon(Icons.arrow_back_ios_new)),
+        backgroundColor: Colors.white,
         title: Text(
           'Categories',
           style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w700),
@@ -65,7 +70,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   child: InkWell(
                       onTap: () {
                         screenController.selectedIndex.value = Navi.checkList[index];
-                        Get.to(Navi.screenList.elementAt(index));
+                        Get.to( Navi.screenList.elementAt(index));
                         if (kDebugMode) {
                           print(screenController.selectedIndex.value.toString());
                         }
@@ -141,15 +146,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               String newsAuthor = article.author.toString();
                               String newsDescription = article.description.toString();
                               String newsContent = article.content.toString();
-                              String newsSource = article.author.toString();
-                              Get.to(NewsDetailScreen(
+                              String newsSource = article.source!.name.toString();
+                              Get.to(()=> NewsDetailScreen(
                                   newsImage: newsImage,
                                   newsTitle: newsTitle,
                                   newsDate: newsDate,
                                   author: newsAuthor,
                                   description: newsDescription,
                                   content: newsContent,
-                                  source: newsSource
+                                  source: newsSource, newsUrl: article.url.toString(),
                               ));
                             },
                             child: Row(
@@ -187,7 +192,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
-                                              const AppText(title: 'source',
+                                              AppText(title: article.source!.name.toString(),
                                                 textFontWeight: FontWeight.w500, textColor: Colors.blue,
                                                 fontSize: 12,
                                               ),
