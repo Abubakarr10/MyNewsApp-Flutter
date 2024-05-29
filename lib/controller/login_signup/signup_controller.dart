@@ -131,10 +131,8 @@ class SignupController extends GetxController{
       final name = googleUser.displayName ?? ''; // Use display name from Google
       final email = googleUser.email;
 
-      // Check if the email already exists in the Firestore collection
       final querySnapshot = await userCollection.where('email', isEqualTo: email).get();
       if (querySnapshot.docs.isNotEmpty) {
-        // Email already exists, show an error message or handle this case as needed
         Get.snackbar(
             'Please Login!', 'This Email Already Exists',
             icon: const Padding(
@@ -169,8 +167,8 @@ class SignupController extends GetxController{
 
       userFireController.createUser(userModel);
 
-      prefs.setString('email', email);
-      await saveLoginStatus(true);
+      // prefs.setString('email', email);
+      // await saveLoginStatus(true);
 
       Get.off(()=> const HomeScreen());
 

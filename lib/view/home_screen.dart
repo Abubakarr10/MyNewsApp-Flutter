@@ -13,6 +13,7 @@ import 'package:my_news_app/utilities/app_text.dart';
 import 'package:my_news_app/utilities/navigation_conts.dart';
 import 'package:my_news_app/view/categories_screen.dart';
 import 'package:my_news_app/view/news_detail_screen.dart';
+import 'package:my_news_app/view/profile/profile_screen.dart';
 import 'package:my_news_app/view_model/news_view_model.dart';
 import '../model/article_model.dart';
 
@@ -55,8 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
           centerTitle: false,
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+          backgroundColor: Colors.red,
           leading: IconButton(
               onPressed: () {
                 Get.to(() => const CategoriesScreen());
@@ -73,23 +73,29 @@ class _HomeScreenState extends State<HomeScreen> {
               AppText(
                 title: 'My ',
                 fontSize: 24,
+                textColor: Colors.black,
                 textFontWeight: FontWeight.w700,
               ),
               AppText(
                 title: 'News',
                 fontSize: 24,
                 textFontWeight: FontWeight.w700,
-                textColor: Colors.red,
+                textColor: Colors.white,
               ),
             ],
           ),
-          actions: const [
-            Icon(
-              Icons.person_2_outlined,
-              size: 34,
-              color: Colors.white,
+          actions: [
+            InkWell(
+              onTap: (){
+                Get.to(()=> const ProfileScreen());
+              },
+              child: const Icon(
+                Icons.person_2_outlined,
+                size: 34,
+                color: Colors.black,
+              ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
           ]),

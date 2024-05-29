@@ -50,10 +50,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         leading: InkWell(
             onTap: (){Get.back();},
             child: const Icon(Icons.arrow_back_ios_new)),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red,
         title: Text(
           'Categories',
-          style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w700),
+          style: GoogleFonts.poppins(fontSize: 24,color: Colors.white, fontWeight: FontWeight.w700),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

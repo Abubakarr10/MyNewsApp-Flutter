@@ -46,11 +46,11 @@ class _SaveArticlesScreenState extends State<SaveArticlesScreen> {
 
     return  Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red,
         leading: InkWell(
             onTap: (){Get.back();},
             child: const Icon(Icons.arrow_back_ios)),
-        title: const AppText(title: 'Saved Articles',fontSize: 24,),
+        title: const AppText(title: 'Saved Articles',textColor: Colors.white,fontSize: 24,),
       ),
       body: user == null? Stack(
         fit: StackFit.expand,

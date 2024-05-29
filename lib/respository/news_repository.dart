@@ -7,7 +7,8 @@ import '../model/article_model.dart';
 
 class NewsRepository{
 
-  final apiKey = '66a93a292ef2452ab0a7a4691c505a11';
+ // final apiKey = '66a93a292ef2452ab0a7a4691c505a11';
+  final apiKey = 'ef9ad56289cf4e9fa7b96bdad32be387';
 
   Future<NewsChannelHeadlinesModel> fetchNewsChannelHeadlinesApi(String source)async{
     String url = "https://newsapi.org/v2/top-headlines?sources=$source&apiKey=$apiKey";
