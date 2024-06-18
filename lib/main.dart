@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_news_app/view/login_signup/login_screen.dart';
-import 'package:my_news_app/view/login_signup/signup_screen.dart';
-import 'package:my_news_app/view/profile/profile_screen.dart';
 import 'package:my_news_app/view/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'controller/share_preferences/share_preferences_controller.dart';
@@ -20,6 +17,7 @@ void main() async{
   );
   runApp(MyApp(isLoggedIn: isLoggedIn,));
 }
+
 
 class MyApp extends StatelessWidget {
 final bool isLoggedIn;
