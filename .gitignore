@@ -4,6 +4,16 @@
 *.pyc
 *.swp
 .DS_Store
+.idea
+build
+windows
+ios
+
+firebase.json
+lib/respository/news_repository.dart
+lib/utilities/widgets/
+lib/utilities/app_text.dart
+lib/firebase_options.dart
 .atom/
 .buildlog/
 .history
