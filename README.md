@@ -1,6 +1,10 @@
-# MyNewsApp-MAD
+# My News App (Flutter)
 
-# Group members 
-# Abubakar (21-NTU-CS-1289)
-# Huzaifa Ahmad (21-NTU-CS-1318)
-# Imran Ali Niaz (21-NTU-CS-1321)
+Using Real time RESTFUL APIs from News API (https://newsapi.org/).
+
+### Key Points
++ Flutter (Frontend)
++ Dart (Programming language)
++ MVVM (Architecture Style)
++ GetX (State-managemnet)
++ RESTFUL APIs (News API)
