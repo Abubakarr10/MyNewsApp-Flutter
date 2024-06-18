@@ -6,8 +6,8 @@
 .DS_Store
 .idea
 build
-/windows
-/ios
+windows
+ios
 firebase.json
 lib/respository/news_repository.dart
 lib/utilities/widgets/
