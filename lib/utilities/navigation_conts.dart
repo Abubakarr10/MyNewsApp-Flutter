@@ -4,7 +4,7 @@ import '../view/categories_screen.dart';
 import '../view/home_screen.dart';
 import '../view/profile/profile_screen.dart';
 import '../view/save_article_screen.dart';
-
+//
 class Navi{
 
  static List<IconData> iconList = [
